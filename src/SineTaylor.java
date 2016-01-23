@@ -4,9 +4,9 @@
 public class SineTaylor {
 
     public static void main(String[] args) {
-
+        System.out.println("Градусы"+"\t"+"\t"+"\t"+"\t"+"Радианы"+"\t"+"\t" +"Cинус по Тейлору"+"\t"+"Синус по формуле");
         for (double angle = 0; angle <= 4 * Math.PI; angle += Math.PI / 8) {
-            System.out.println(degrees(angle) + "\t" + taylorSeriesSine(angle)
+            System.out.println(angle+"\t"+degrees(angle) + "\t" + taylorSeriesSine(angle)
                     + "\t" + Math.sin(angle));
         }
     }
