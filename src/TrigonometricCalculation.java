@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 /**
@@ -5,8 +6,9 @@ import java.util.Scanner;
  */
 public class TrigonometricCalculation {
     public static void main(String[] args) {
-        double angle;       //angle value in radians
-        boolean sinOrCos;   //sin if true
+        double angle;           //angle value in radians
+        boolean sinOrCos;       //sin if true
+        float precision = 0;    //precision
 
         //Let's make an UI (user interface)
         Scanner scanner = new Scanner(System.in);
@@ -36,7 +38,7 @@ public class TrigonometricCalculation {
             if (userInput.equals("s") || userInput.equals("sin")) {
                 sinOrCos = true;
                 break;
-            } else if (userInput.equals("c") || userInput.equals("cos")){
+            } else if (userInput.equals("c") || userInput.equals("cos")) {
                 sinOrCos = false;
                 break;
             } else {
@@ -48,7 +50,29 @@ public class TrigonometricCalculation {
         while (true) {
             System.out.print("Enter a precision (i.e. 0.001");
             userInput = scanner.next();
-            UserInputUtils.precisionInput(userInput);
+            precision = UserInputUtils.precisionInput(userInput);
+            if (precision != 0) {
+                break;
+            }
         }
+
+        //Let's print a result
+        printResult(angle, sinOrCos, precision);
+    }
+
+    private static void printResult(double angle, boolean sinOrCos, float precision) {
+        System.out.print("With entered angle '" + angle + "' radians with precision '");
+        System.out.print(trimZeroFloat(String.valueOf(String.format("%f", precision))) + "' ");
+        if (sinOrCos) {
+            System.out.print("sin is: ");
+            System.out.print((new DecimalFormat("#.####").format(Calculation.taylor(angle))), sinOrCos, precision);
+        } else {
+            System.out.print("cos is: ");
+            System.out.print((new DecimalFormat("#.####").format(Calculation.taylor(angle))), sinOrCos, precision);
+        }
+    }
+
+    private static String trimZeroFloat(String floatNumber) {
+        return floatNumber.replaceAll("\\.?0*$", "");
     }
 }
