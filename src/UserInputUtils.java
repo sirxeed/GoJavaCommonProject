@@ -10,6 +10,7 @@ public class UserInputUtils {
         //Let's check if user typed a dimension
         if (chars[chars.length - 1] == 'd' || chars[chars.length - 1] == 'r') {
             checker = true;
+            angleValue(angle);
         } else {
             System.out.println("You didn't type a dimension ('r' - for radians, 'd' - for degrees).");
         }
