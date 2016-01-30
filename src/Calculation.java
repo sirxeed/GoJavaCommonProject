@@ -4,23 +4,25 @@
 public class Calculation {
 
     public double taylor(double angle, boolean sinOrCos, float precision) {
-        double functionMember; // member of the function
-        int power;  // power of member
+        double sum; // function sum
+        int power;  // power of term
         int sign;
+        double term = 1;
         if (sinOrCos) {  // for sin
-            functionMember = angle;
+            sum = angle;
             power = 3;
         } else { // for cos
-            functionMember = 1;
+            sum = 1;
             power = 2;
         }
         sign = -1;
-        while (Math.abs(functionMember) >= precision) { // exit when |functionMember| < entered precision
-            functionMember += Math.pow(angle, power) * sign / factorial(power);
+        while (Math.abs(term) > precision) { // exit when |term| < entered precision
+            term = Math.pow(angle, power) / factorial(power);
+            sum += sign * term;
             sign *= -1;
             power += 2;
         }
-        return functionMember;
+        return sum;
     }
 
     private static int factorial(int element) {
