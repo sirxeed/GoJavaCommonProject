@@ -16,8 +16,9 @@ public class Calculation {
             power = 2;
         }
         sign = -1;
-        while (Math.abs(term) > precision) { // exit when |term| < entered precision
-            term = Math.pow(angle, power) / factorial(power);
+        // works only up to 4 radians
+        while (Math.abs(term) >= precision) { // exit when |term| < entered precision
+            term = Math.pow(angle, power) /  factorial(power);
             sum += sign * term;
             sign *= -1;
             power += 2;
@@ -25,8 +26,8 @@ public class Calculation {
         return sum;
     }
 
-    private static int factorial(int element) {
-        int result = 1;
+    private static double factorial(double element) {
+        double result = 1;
         for (int j = 2; j <= element; j++) {
             result *= j;
         }
