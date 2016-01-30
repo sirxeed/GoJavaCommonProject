@@ -2,9 +2,9 @@
  * Created by ����� on 26.01.2016.
  */
 public class UserInputUtils {
-
+    boolean checker = false;
     public boolean angleInputValidate(String angle) {
-        boolean checker = false;
+
         char[] chars = angle.toCharArray();
 
         //Let's check if user typed a dimension
@@ -18,7 +18,7 @@ public class UserInputUtils {
     }
 
     public double angleValue(String angle) {
-        float angleFloat = 0;
+        double angleDouble = 0;
         char[] chars = angle.toCharArray();
         char type = chars[chars.length - 1];
         //If 'yes' let's check if we can parse it to float
@@ -28,19 +28,20 @@ public class UserInputUtils {
             angleNumbers.append(chars[i]);
         }
         try {
-            angleFloat = Float.parseFloat(angleNumbers.toString());
+            angleDouble = Double.parseDouble(angleNumbers.toString());
 
             //converting input number into radians, if needed
             if (type == 'd') {
-                angleIntoRadians(angleFloat);
+                angleDouble = angleIntoRadians(angleDouble);
             }
         } catch (NumberFormatException e) {
+            checker = false;
             System.out.println("You entered wrong float: '" + angleNumbers + "'!");
         }
-        return angleFloat;
+        return angleDouble;
     }
 
-    public static double angleIntoRadians(float angle) {
+    public static double angleIntoRadians(double angle) {
         return (angle * Math.PI) / 180;
     }
 

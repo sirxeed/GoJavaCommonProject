@@ -6,9 +6,9 @@ import java.util.Scanner;
  */
 public class TrigonometricCalculation {
     public static void main(String[] args) {
-        double angle;           //angle value in radians
+        double angle = 0;           //angle value in radians
         boolean sinOrCos;       //sin if true
-        float precision = 0;    //precision
+        float precision;    //precision
 
         //Let's make an UI (user interface)
         Scanner scanner = new Scanner(System.in);
@@ -17,7 +17,7 @@ public class TrigonometricCalculation {
 
         //Entering an angle
         while (true) {
-            System.out.print("Please enter an angle (i.e. '1r' for radians or i.e. '60d' for degrees) or e(x)it: ");
+            System.out.println("Please enter an angle (i.e. '1r' for radians or i.e. '60d' for degrees) or e(x)it: ");
             userInput = scanner.next();
 
             //Exit command - end of program
@@ -33,23 +33,28 @@ public class TrigonometricCalculation {
         }
 
         //Let's input 'sin' or 'cos'
+        label:
         while (true) {
-            System.out.print("Enter (s)in or (c)os: ");
+            System.out.println("Enter (s)in or (c)os: ");
             userInput = scanner.next();
-            if (userInput.equals("s") || userInput.equals("sin")) {
-                sinOrCos = true;
-                break;
-            } else if (userInput.equals("c") || userInput.equals("cos")) {
-                sinOrCos = false;
-                break;
-            } else {
-                System.out.print("Wrong input! ");
+            switch (userInput) {
+                case "s":
+                case "sin":
+                    sinOrCos = true;
+                    break label;
+                case "c":
+                case "cos":
+                    sinOrCos = false;
+                    break label;
+                default:
+                    System.out.print("Wrong input! ");
+                    break;
             }
         }
 
         //Let's input a precision
         while (true) {
-            System.out.print("Enter a precision (i.e. 0.001");
+            System.out.println("Enter a precision (i.e. 0.001): ");
             userInput = scanner.next();
             precision = userInputUtils.precisionInput(userInput);
             if (precision != 0) {
@@ -62,14 +67,16 @@ public class TrigonometricCalculation {
     }
 
     private static void printResult(double angle, boolean sinOrCos, float precision) {
+        Calculation calculation = new Calculation();
+
         System.out.print("With entered angle '" + angle + "' radians with precision '");
         System.out.print(trimZeroFloat(String.valueOf(String.format("%f", precision))) + "' ");
         if (sinOrCos) {
             System.out.print("sin is: ");
-            System.out.print((new DecimalFormat("#.####").format(Calculation.taylor(angle))), sinOrCos, precision);
+            System.out.print(new DecimalFormat("#.####").format(calculation.taylor(angle, sinOrCos, precision)));
         } else {
             System.out.print("cos is: ");
-            System.out.print((new DecimalFormat("#.####").format(Calculation.taylor(angle))), sinOrCos, precision);
+            System.out.print(new DecimalFormat("#.####").format(calculation.taylor(angle, sinOrCos, precision)));
         }
     }
 
