@@ -1,3 +1,7 @@
+package groupNumber2;
+
+import groupNumber2.Calculation;
+
 import java.text.DecimalFormat;
 import java.util.Scanner;
 

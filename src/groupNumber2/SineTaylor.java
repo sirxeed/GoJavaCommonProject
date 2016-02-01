@@ -1,3 +1,5 @@
+package groupNumber2;
+
 /**
  * Created by Pavel on 23.01.2016.
  */

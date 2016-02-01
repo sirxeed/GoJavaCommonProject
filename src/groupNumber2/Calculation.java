@@ -1,3 +1,5 @@
+package groupNumber2;
+
 /**
  * Created by Макс on 30.01.2016.
  */
@@ -26,7 +28,7 @@ public class Calculation {
         return sum;
     }
 
-    private static double factorial(double element) {
+    public double factorial(double element) {
         double result = 1;
         for (int j = 2; j <= element; j++) {
             result *= j;
