@@ -25,19 +25,26 @@ public class ParametrizedCalculationTaylorTest {
     }
 
     //declare parameters
-    @Parameterized.Parameters(name = "(index): sin({0}) = {3}")
+    @Parameterized.Parameters(name = "{index}: function( {0} ) = {3}")
     public static Iterable<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {1, true, 0.001f, Math.sin(1)},
                 {2, true, 0.0001f, Math.sin(2)},
-                {3, true, 0.00001f, Math.sin(3)},
+                {3, false, 0.00001f, Math.cos(3)},
                 {-1, true, 0.000001f, Math.sin(-1)},
-                {3.14, true, 0.0000001f, Math.sin(3.14)}
+                {3.14, false, 0.0000001f, Math.cos(3.14)}
         });
     }
 
     @Test
     public void testTaylor() {
         Assert.assertEquals(expected, calculation.taylor(angle, sinOrCos, precision), 0.00001f); // maximum available precision for our task
+        String function;
+        if (sinOrCos) {
+            function = "SIN";
+        } else {
+            function = "COS";
+        }
+        System.out.println("Function " + function + " was checked");
     }
 }

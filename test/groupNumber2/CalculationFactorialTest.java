@@ -7,10 +7,10 @@ import org.junit.Test;
 
 public class CalculationFactorialTest {
 
-    private Calculation calculation;
+    private static Calculation calculation;
 
     @BeforeClass
-    public void setUpClass() {
+    public static void setUpClass() {
         calculation = new Calculation();
 
     }
@@ -20,6 +20,6 @@ public class CalculationFactorialTest {
         final double number = 5;
         final double result = calculation.factorial(number);
 
-        Assert.assertEquals(120, result, 0.001);
+        Assert.assertEquals(120, result, 0.001f);
     }
 }
