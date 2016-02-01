@@ -43,7 +43,7 @@ public class UserInputUtils {
         return angleDouble;
     }
 
-    public static double angleIntoRadians(double angle) {
+    public double angleIntoRadians(double angle) {
         return (angle * Math.PI) / 180;
     }
 

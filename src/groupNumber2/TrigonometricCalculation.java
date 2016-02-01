@@ -73,7 +73,7 @@ public class TrigonometricCalculation {
     private static void printResult(double angle, boolean sinOrCos, float precision) {
         Calculation calculation = new Calculation();
 
-        System.out.print("With entered angle '" + angle + "' radians with precision '");
+        System.out.print("With entered angle '" + angle + "' radians and precision '");
         System.out.print(trimZeroFloat(String.valueOf(String.format("%f", precision))) + "' ");
         if (sinOrCos) {
             System.out.print("sin is: ");

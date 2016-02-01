@@ -29,10 +29,9 @@ public class Calculation {
     }
 
     public double factorial(double element) {
-        double result = 1;
-        for (int j = 2; j <= element; j++) {
-            result *= j;
+        if (element == 1) {
+            return element;
         }
-        return result;
+        return element * factorial(element - 1);
     }
 }
