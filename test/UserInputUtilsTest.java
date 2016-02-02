@@ -1,10 +1,6 @@
-package groupNumber2;
-
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.w3c.dom.views.AbstractView;
 
 public class UserInputUtilsTest {
     private static UserInputUtils userInputUtils;
@@ -49,7 +45,7 @@ public class UserInputUtilsTest {
     @Test
     public void testPrecisionInput() throws Exception {
         final String precision = "0.0001";
-        final float result = userInputUtils.precisionInput(precision);
+        final float result = userInputUtils.precisionInput(precision, 10);
 
         Assert.assertEquals(0.0001, result, 0.00001);
 

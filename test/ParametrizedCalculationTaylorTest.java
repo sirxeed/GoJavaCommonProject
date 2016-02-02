@@ -1,6 +1,3 @@
-package groupNumber2;
-
-import groupNumber2.Calculation;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

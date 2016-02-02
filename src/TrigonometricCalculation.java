@@ -53,7 +53,7 @@ public class TrigonometricCalculation {
 
             //Let's input a precision
             while (true) {
-                System.out.print("Enter a precision (i.e. 0.001), maximum precision is " + MAXIMUM_PRECISION + " digits after '0.': ");
+                System.out.print("Enter a precision (i.e. 0.001). Minimum precision is 0.001, maximum precision is " + MAXIMUM_PRECISION + " digits after '0.': ");
                 userInput = scanner.next();
                 precision = userInputUtils.precisionInput(userInput, MAXIMUM_PRECISION);
                 if (precision != 0) {

@@ -47,7 +47,7 @@ public class UserInputUtils {
         float precision = 0;
         char[] chars = userInput.toCharArray();
         //let's check if it was entered correctly (0.***1)
-        if (chars[chars.length - 1] == '1' && chars[0] == '0' && chars[1] == '.' && chars.length <= (MAXIMUM_PRECISION + 2)) {
+        if (chars[chars.length - 1] == '1' && chars[0] == '0' && chars[1] == '.' && chars.length <= (MAXIMUM_PRECISION + 2) && chars.length >= 5) {
             //if yes let's check if all between '.' and '1' are zeros
             for (int i = 2; i < chars.length - 1; i++) {
                 if (chars[i] != '0') {
