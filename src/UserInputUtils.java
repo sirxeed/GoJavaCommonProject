@@ -1,10 +1,6 @@
-package groupNumber2;
-
-/**
- * Created by ����� on 26.01.2016.
- */
 public class UserInputUtils {
     boolean checker = false;
+
     public boolean angleInputValidate(String angle) {
 
         char[] chars = angle.toCharArray();
@@ -23,8 +19,8 @@ public class UserInputUtils {
         double angleDouble = 0;
         char[] chars = angle.toCharArray();
         char type = chars[chars.length - 1];
-        //If 'yes' let's check if we can parse it to float
 
+        //If 'yes' let's check if we can parse it to float
         StringBuilder angleNumbers = new StringBuilder();
         for (int i = 0; i < chars.length - 1; i++) {
             angleNumbers.append(chars[i]);
@@ -47,28 +43,23 @@ public class UserInputUtils {
         return (angle * Math.PI) / 180;
     }
 
-    public float precisionInput(String userInput) {
+    public float precisionInput(String userInput, final int MAXIMUM_PRECISION) {
         float precision = 0;
         char[] chars = userInput.toCharArray();
-        if (chars[chars.length - 1] == '1') {
-            //let's check if it was entered correctly.
-                for (int i = 0; i < chars.length - 1; i++) {
-                    if (i == 1) {
-                        if (chars[1] == '.') {
-                            continue;
-                        }
-                    } else {
-                        if (chars[i] != '0') {
-                            System.out.println("Wrong precision input. (i.e. 0.0001)");
-                            return 0;
-                        }
-                    }
+        //let's check if it was entered correctly (0.***1)
+        if (chars[chars.length - 1] == '1' && chars[0] == '0' && chars[1] == '.' && chars.length <= (MAXIMUM_PRECISION + 2)) {
+            //if yes let's check if all between '.' and '1' are zeros
+            for (int i = 2; i < chars.length - 1; i++) {
+                if (chars[i] != '0') {
+                    System.out.println("Wrong precision input. (i.e. 0.001)");
+                    return 0f;
                 }
-                precision = Float.parseFloat(userInput);
+            }
         } else {
-            System.out.println("Wrong precision input. (i.e. 0.0001)");
+            System.out.println("Wrong precision input. (i.e. 0.001)");
+            return 0f;
         }
+        precision = Float.parseFloat(userInput);
         return precision;
     }
-
 }

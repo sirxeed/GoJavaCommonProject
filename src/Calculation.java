@@ -1,15 +1,11 @@
-package groupNumber2;
-
-/**
- * Created by Макс on 30.01.2016.
- */
 public class Calculation {
 
-    public double taylor(double angle, boolean sinOrCos, float precision) {
+    public static double taylor(double angle, boolean sinOrCos, float precision) {
         double sum; // function sum
         int power;  // power of term
         int sign;
         double term = 1;
+
         if (sinOrCos) {  // for sin
             sum = angle;
             power = 3;
@@ -18,9 +14,18 @@ public class Calculation {
             power = 2;
         }
         sign = -1;
-        // works only up to 4 radians
+
+        //Lets simplify angle in between -2pi ... +2pi
+        while (Math.abs(angle) > 2 * Math.PI) {
+            if (angle > 0) {
+                angle -= 2 * Math.PI;
+            } else {
+                angle += 2 * Math.PI;
+            }
+        }
+
         while (Math.abs(term) >= precision) { // exit when |term| < entered precision
-            term = Math.pow(angle, power) /  factorial(power);
+            term = Math.pow(angle, power) / factorial(power);
             sum += sign * term;
             sign *= -1;
             power += 2;
@@ -28,7 +33,7 @@ public class Calculation {
         return sum;
     }
 
-    public double factorial(double element) {
+    public static double factorial(double element) {
         if (element == 1) {
             return element;
         }
